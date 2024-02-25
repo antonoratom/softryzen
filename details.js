@@ -153,3 +153,34 @@ window.addEventListener("load", function () {
     console.log("tabs color code");
   }, 1000);
 });
+
+// RESIZE SECTION BASED ON SCROLL
+let loadTl = gsap.timeline();
+$(".resize-trigger").each(function () {
+  let scrollTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: $(this),
+      start: "80% 75%",
+      end: "bottom 75%",
+      //markers: true,
+      toggleActions: "play play play reverse",
+    },
+  });
+  scrollTl.to($(this).siblings(".resize-target"), {
+    scale: 0.97,
+    borderTopLeftRadius: "3rem",
+    borderBottomRightRadius: "3rem",
+    duration: 0.7,
+  });
+});
+
+//VISIBILITY OF MOBILE TOP NAV BG
+var element = document.querySelector(".mob-scroll-bg");
+
+window.addEventListener("scroll", function () {
+  if (window.scrollY >= 140) {
+    element.classList.add("scroll-visible");
+  } else {
+    element.classList.remove("scroll-visible");
+  }
+});
